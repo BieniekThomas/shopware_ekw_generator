@@ -1,5 +1,5 @@
 // Inputs
-var ekwName = "Plugin Name";
+var ekwName = "PluginName";
 var description = "";
 
 // Filesystem by Node.js
@@ -7,9 +7,11 @@ const fs = require('fs');
 
 // Imports and requires
 const handleEkwName = require('./handleEkwName');
+const makeOtherCase = require('./makeOtherCase');
 
 
 var correctEkwName = handleEkwName.handleEkwName(ekwName);
+correctEkwName = makeOtherCase.makeOtherCase(ekwName);
 
 // make plugin-containing folder
 fs.mkdirSync('Shopware_Plugins/'+correctEkwName, { recursive: true });
