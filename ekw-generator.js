@@ -1,31 +1,14 @@
-// Filesystem by Node.js
-const fs = require('fs');
-
-// write your EKW-Name here
+// Inputs
 var ekwName = "teffst";
 var description = "";
 
-// Other Functions
-const getRidOfUmlaute = (ekwName) => {
-  	ekwName = ekwName.replace(/ä/g, 'ae');
-  	ekwName = ekwName.replace(/ö/g, 'oe');
-  	ekwName = ekwName.replace(/ü/g, 'ue');
-  	ekwName = ekwName.replace(/ß/g, 'ss');
-  	ekwName = ekwName.replace(/ /g, '-');
-  	ekwName = ekwName.replace(/\./g, '');
-  	ekwName = ekwName.replace(/,/g, '');
-  	ekwName = ekwName.replace(/\(/g, '');
-  	ekwName = ekwName.replace(/\)/g, '');
-  	return ekwName;
-}
+// Filesystem by Node.js
+const fs = require('fs');
 
-const handleEkwName = (ekwName) => {
-	// Stuff happens here
-    ekwName = getRidOfUmlaute(ekwName);
-	return ekwName;
-}
+// Imports and requires
+const handleEkwName = require('./handleEkwName');
 
-var correctEkwName = handleEkwName(ekwName);
+var correctEkwName = handleEkwName.handleEkwName(ekwName);
 
 // make plugin-containing folder
 fs.mkdirSync('Shopware_Plugins/'+correctEkwName, { recursive: true });
