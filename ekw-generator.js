@@ -42,6 +42,6 @@ fs.writeFile( fileEkwName + '.php', fileEkwName + '.php Content', function (err)
 process.chdir('../ComponentHandler');
 fs.writeFile( fileEkwName + 'Handler.php', fileEkwName + '.php Content', function (err) {
 	if (err) throw err;
-  	console.log('EmotionElementInstaller.php Saved!');
+  	console.log('ComponentHandler.php Saved!');
 });
 
