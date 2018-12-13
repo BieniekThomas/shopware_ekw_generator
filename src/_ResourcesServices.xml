@@ -1,0 +1,27 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <!-- Event Subscriber -->
+        <service class="ecEkwDepartment\Subscriber\Emotion" id="ec_ekw_department.subscriber.emotion">
+            <tag name="shopware.event_subscriber"/>
+        </service>
+
+        <!-- Component Handler -->
+        <service class="ecEkwDepartment\ComponentHandler\ecEkwDepartmentHandler" id="ec_ekw_department.component_handler.ec_ekw_department_handler">
+            <tag name="shopware_emotion.component_handler"/>
+        </service>
+
+        <service id="ec_ekw_department.subscriber.templates" class="Shopware\Components\Emotion\EmotionComponentViewSubscriber">
+            <argument>%ec_subcategory_teaser.plugin_dir%</argument>
+            <tag name="shopware.event_subscriber"/>
+        </service>
+
+    </services>
+
+
+
+</container>

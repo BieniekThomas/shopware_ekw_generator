@@ -6,8 +6,8 @@ var description = "";
 const fs = require('fs');
 
 // Imports and requires
-const handleEkwName = require('./handleEkwName');
-const makeOtherCase = require('./makeOtherCase');
+const handleEkwName = require('./handler/handleEkwName');
+const makeOtherCase = require('./handler/makeOtherCase');
 
 // Input Part //
 // Validate Input
@@ -19,10 +19,11 @@ var fileEkwName = makeOtherCase.makeOtherCase(correctEkwName);
 
 // Folder Part //
 // make plugin-containing folder Synchronously
-fs.mkdirSync('Shopware_Plugins/' + correctEkwName, { recursive: true });
+fs.mkdirSync('_Shopware_Plugins/' + correctEkwName, { recursive: true });
+
 
 // Direct to Inital Folder
-process.chdir('Shopware_Plugins/' + correctEkwName);
+process.chdir('_Shopware_Plugins/' + correctEkwName);
 
 // Generate FolderStructure Synchronously -> mkdir is async
 fs.mkdirSync('ComponentHandler/');
