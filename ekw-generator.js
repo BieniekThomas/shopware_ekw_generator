@@ -36,7 +36,7 @@ process.chdir('_Shopware_Plugins/' + correctEkwName);
 process.chdir('Bootstrap/');
 
 	// This is not working
-	// var outputFile = writeFiles.replaceVariables(correctEkwName, description, '_initialEmotionPhp.txt');
+	var outputFile = writeFiles.replaceVariables(correctEkwName, description, '_initialEmotionPhp.txt');
 
 	fs.writeFile( fileEkwName + '.php', outputFile, function (err) {
 		if (err) throw err;

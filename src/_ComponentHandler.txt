@@ -1,6 +1,6 @@
 <?php
 
-namespace ecEkwDepartment\ComponentHandler;
+namespace [[...EKWNAME...]]\ComponentHandler;
 
 use Shopware\Bundle\EmotionBundle\ComponentHandler\ComponentHandlerInterface;
 use Shopware\Bundle\EmotionBundle\Struct\Collection\PrepareDataCollection;
