@@ -1,61 +1,90 @@
-// Inputs
-var readline = require('readline-sync')
-var ekwName = readline.question('What should your EKW should be named: ');
-var description = "";
+// Requirements
+var readline = require('readline-sync'); // Readline
+const fs = require('fs'); // Filesystem
 
-// Filesystem by Node.js
-const fs = require('fs');
-
-// Imports and requires
 const handleEkwName = require('./handler/handleEkwName');
+const replace = require('replace-in-file');
 const makeOtherCase = require('./handler/makeOtherCase');
-const writeFiles = require('./handler/replaceVariables');
 
-var contents = [
-	componentHandler = fs.readFileSync('./src/_ComponentHandler.txt', 'utf8'),
-]
+// Inputs
+let ekwName = 'yourEkwName';
+let description = '';
 
-console.log('ComponentHandler-Inhalt:', contents.componentHandler);
-console.log('EKWNAME: ', ekwName);
+// Console Inputs
+ekwName = readline.question('Write your wanted EKW-Name: ');
+description = readline.question('Short description of your Plugin (recommended): ');
 
-// Input Part //
 // Validate Input
-var correctEkwName = handleEkwName.handleEkwName(ekwName);
+var fixedEkwName = handleEkwName.handleEkwName(ekwName);
+var fixedEkwFileName = makeOtherCase.makeOtherCase(ekwName);
 
-// Generate FileName
-var fileEkwName = makeOtherCase.makeOtherCase(correctEkwName);
+// create Files
+makeDirectoriesAndFiles(fixedEkwName, fixedEkwFileName);
 
-
-// Folder Part //
-fs.mkdirSync('_Shopware_Plugins/' + correctEkwName, { recursive: true });
-
-
-// Direct to Inital Folder
-process.chdir('_Shopware_Plugins/' + correctEkwName);
-
-	// Generate FolderStructure Synchronously -> mkdir is async
-	fs.mkdirSync('ComponentHandler/');
-	fs.mkdirSync('Bootstrap/');
-	fs.mkdirSync('Resources/views/emotion_components/widgets/emotion/components/', { recursive: true });
-	fs.mkdirSync('Resources/views/frontend/_public/src/less/', { recursive: true });
-	fs.mkdirSync('Subscriber/');
-
-// Direct to Bootstrap
-process.chdir('Bootstrap/');
-
-	// This is not working
-	var outputFile = writeFiles.replaceVariables(correctEkwName, description, '_initialEmotionPhp.txt');
-
-	fs.writeFile( fileEkwName + '.php', outputFile, function (err) {
-		if (err) throw err;
-	  	console.log('EmotionElementInstaller.php Saved!');
+replace(pluginNameOptions)
+	.then(changedFiles => {
+    	console.log('Modified files:', changedFiles.join(', '));
+  	})
+  	.catch(error => {
+    	console.error('Error occurred:', error);
 	});
 
-// Direct to ComponentHandler
-process.chdir('../ComponentHandler');
 
-	fs.writeFile( fileEkwName + 'Handler.php', fileEkwName + '.php Content', function (err) {
+// replace options
+const pluginNameOptions = {
+	files: [
+		'_Shopware_Plugins/' + fixedEkwName + '/**/*.php',
+		'_Shopware_Plugins/' + fixedEkwName + '/**/*.js',
+		'_Shopware_Plugins/' + fixedEkwName + '/**/*.xml',
+		'_Shopware_Plugins/' + fixedEkwName + '/**/*.tpl',
+		'_Shopware_Plugins/' + fixedEkwName + '/**/*.less',
+	],
+	//Replacement to make (string or regex) 
+	from: /[::plugin_name::]/g,
+	to: ekwName,
+};
+
+const classNameOptions = {
+	files: [
+		'_Shopware_Plugins/' + fixedEkwName + '/**/*.php',
+		'_Shopware_Plugins/' + fixedEkwName + '/**/*.js',
+		'_Shopware_Plugins/' + fixedEkwName + '/**/*.xml',
+		'_Shopware_Plugins/' + fixedEkwName + '/**/*.tpl',
+		'_Shopware_Plugins/' + fixedEkwName + '/**/*.less',
+	],
+	//Replacement to make (string or regex) 
+	from: /[::plugin_name::]/g,
+	to: ekwName,
+};
+
+
+function makeDirectoriesAndFiles (correctEkwName, correctFileName) {
+	// Create Directories
+	fs.mkdirSync('_Shopware_Plugins/' + correctEkwName, { recursive: true });
+	process.chdir('_Shopware_Plugins/' + correctEkwName);
+
+		// Generate FolderStructure Synchronously
+		fs.mkdirSync('ComponentHandler/');
+		fs.mkdirSync('Bootstrap/');
+		fs.mkdirSync('Resources/views/emotion_components/widgets/emotion/components/', { recursive: true });
+		fs.mkdirSync('Resources/views/frontend/_public/src/less/', { recursive: true });
+		fs.mkdirSync('Subscriber/');
+	
+	console.log('Directories created');
+
+	process.chdir('Bootstrap/');
+	fs.writeFile( correctFileName + '.php', outputFile, function (err) {
 		if (err) throw err;
-	  	console.log('ComponentHandler.php Saved!');
+		console.log('EmotionElementInstaller.php Saved!');
 	});
+
+	// Direct to ComponentHandler
+	process.chdir('../ComponentHandler');
+	fs.writeFile( correctFileName + 'Handler.php', correctFileName + '.php Content', function (err) {
+		if (err) throw err;
+		console.log('ComponentHandler.php Saved!');
+	});
+
+	return console.log('its done');
+}
 

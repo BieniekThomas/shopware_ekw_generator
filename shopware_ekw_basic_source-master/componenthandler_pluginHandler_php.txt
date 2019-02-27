@@ -1,6 +1,6 @@
 <?php
 
-namespace [[...EKWNAME...]]\ComponentHandler;
+namespace [::plugin_name::]\ComponentHandler;
 
 use Shopware\Bundle\EmotionBundle\ComponentHandler\ComponentHandlerInterface;
 use Shopware\Bundle\EmotionBundle\Struct\Collection\PrepareDataCollection;
@@ -8,7 +8,7 @@ use Shopware\Bundle\EmotionBundle\Struct\Collection\ResolvedDataCollection;
 use Shopware\Bundle\EmotionBundle\Struct\Element;
 use Shopware\Bundle\StoreFrontBundle\Struct\ShopContextInterface;
 
-class ecEkwDepartmentHandler implements ComponentHandlerInterface
+class [::plugin_name::]Handler implements ComponentHandlerInterface
 {
     /**
      * @param Element $element
@@ -16,7 +16,7 @@ class ecEkwDepartmentHandler implements ComponentHandlerInterface
      */
     public function supports(Element $element)
     {
-        return $element->getComponent()->getTemplate() === 'ec_ekw_department';
+        return $element->getComponent()->getTemplate() === '[::element_template::]';
     }
 
     /**

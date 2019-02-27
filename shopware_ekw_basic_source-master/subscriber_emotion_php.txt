@@ -1,6 +1,6 @@
 <?php
 
-namespace ecEkwDepartment\Subscriber;
+namespace [::plugin_name::]\Subscriber;
 
 use Enlight\Event\SubscriberInterface;
 use Shopware\Components\Theme\LessDefinition;
@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Class Emotion
- * @package ecEkwDepartment\Subscriber
+ * @package [::plugin_name::]\Subscriber
  */
 class Emotion implements SubscriberInterface
 {
