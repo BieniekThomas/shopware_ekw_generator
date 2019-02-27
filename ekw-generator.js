@@ -1,5 +1,6 @@
 // Inputs
-var ekwName = "PluginName";
+var readline = require('readline-sync')
+var ekwName = readline.question('What should your EKW should be named: ');
 var description = "";
 
 // Filesystem by Node.js
@@ -9,6 +10,13 @@ const fs = require('fs');
 const handleEkwName = require('./handler/handleEkwName');
 const makeOtherCase = require('./handler/makeOtherCase');
 const writeFiles = require('./handler/replaceVariables');
+
+var contents = [
+	componentHandler = fs.readFileSync('./src/_ComponentHandler.txt', 'utf8'),
+]
+
+console.log('ComponentHandler-Inhalt:', contents.componentHandler);
+console.log('EKWNAME: ', ekwName);
 
 // Input Part //
 // Validate Input

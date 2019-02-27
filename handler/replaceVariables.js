@@ -4,8 +4,8 @@ const replaceVariables = (ekwName, ekwClassName, fileAsTxt) => {
 }
 
 module.exports = {
-  replaceVariables: function (ekwName, ekwClassName, fileAsTxt) {
-    outputString = replaceVariables(ekwName, ekwClassName, fileAsTxt);
-    return outputString;
-  }
+  	replaceVariables: function (ekwName, ekwClassName, fileAsTxt) {
+    	outputString = replaceVariables(ekwName, ekwClassName, fileAsTxt);
+    	return outputString;
+  	}
 };

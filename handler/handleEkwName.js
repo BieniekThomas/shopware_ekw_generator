@@ -13,8 +13,8 @@ const getRidOfUmlaute = (ekwName) => {
 }
 
 module.exports = {
-  handleEkwName: function (ekwName) {
-    ekwName = getRidOfUmlaute(ekwName);
-    return ekwName;
-  }
+    handleEkwName: function (ekwName) {
+        ekwName = getRidOfUmlaute(ekwName);
+        return ekwName;
+    }
 };
