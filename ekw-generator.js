@@ -1,8 +1,8 @@
 // Requirements
-var readline = require('readline-sync'); // Readline
-const fs = require('fs'); // Filesystem
-const appRoot = require('app-root-path'); // get App-Root-Path
-const replace = require('replace-in-file'); // Replace Strings in Files
+var readline = require('readline-sync'); 		// Readline
+const fs = require('fs'); 						// Filesystem
+const appRoot = require('app-root-path'); 		// get App-Root-Path
+const replace = require('replace-in-file'); 	// Replace Strings in Files
 
 // Own Requirements
 const handleEkwName = require('./handler/handleEkwName');
@@ -12,11 +12,13 @@ const makeOtherCase = require('./handler/makeOtherCase');
 const inputs = {
 	ekwName: 'defaultEkwName',
 	description: '',
+	author: '',
 }
 
 // Console Inputs
 inputs.ekwName = readline.question('Write your wanted EKW-Name: ');
 inputs.description = readline.question('Short description of your Plugin (recommended): ');
+inputs.author = readline.question('Who is the Author of this Template: ')
 
 // Validate Input
 var fixedEkwName = handleEkwName.handleEkwName(inputs.ekwName);
@@ -25,7 +27,6 @@ var fixedEkwFileName = makeOtherCase.makeOtherCase(inputs.ekwName);
 // create Folders and Files
 makeDirectoriesAndFiles(fixedEkwName, fixedEkwFileName);
 replaceStrings(fixedEkwName, inputs.description);
-
 
 function readAndWrite (inputPath, outputName, correctEkwName ,outputPath) {
 	process.chdir(appRoot.toString());
@@ -64,10 +65,11 @@ function makeDirectoriesAndFiles (correctEkwName, correctFileName) {
 	return console.log('Writing Files Done');
 }
 
-function replaceStrings(ekwName, description){
+function replaceStrings(ekwName, description) {
 
 	const directoryName = ekwName;
 
+	// @todo @KHH bitte richtige Namen vergeben
 	const plugin_name = makeOtherCase.makeOtherCase(ekwName);
 	const element_template = directoryName + '_two';
 	const element_name = directoryName + '_three';

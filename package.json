@@ -1,0 +1,25 @@
+{
+  "name": "shopware_ekw_generator",
+  "version": "1.0.0",
+  "description": "Making a Shopware EKW-Generator with node.js",
+  "main": "ekw-generator.js",
+  "dependencies": {
+    "app-root-path": "^2.1.0",
+    "readline-sync": "^1.4.9",
+    "replace-in-file": "^3.4.3"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/BieniekThomas/shopware_ekw_generator.git"
+  },
+  "author": "thomas_bieniek",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/BieniekThomas/shopware_ekw_generator/issues"
+  },
+  "homepage": "https://github.com/BieniekThomas/shopware_ekw_generator#readme"
+}
