@@ -16,7 +16,7 @@
         </service>
 
         <service id="[::plugin_mod_name::].subscriber.templates" class="Shopware\Components\Emotion\EmotionComponentViewSubscriber">
-            <argument>%ec_subcategory_teaser.plugin_dir%</argument>
+            <argument>%[::plugin_mod_name::].plugin_dir%</argument>
             <tag name="shopware.event_subscriber"/>
         </service>
 
